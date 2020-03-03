@@ -4,7 +4,7 @@ const userUrl = process.env.USER_PORT;
 class UserController {
 
     static readAll(req,res,next) {
-
+        console.log('masuk controller')
         axios({
             url: `${userUrl}/users`,
             method: 'GET',
@@ -12,9 +12,7 @@ class UserController {
         .then(({data}) => {
             res.status(200).json(data);
         })
-        .catch(err => {
-            console.log(err.response.data.message);
-        })
+        .catch(next)
     };
 
     static readMe(req,res,next) {
@@ -29,9 +27,7 @@ class UserController {
         .then(({data}) => {
             res.status(200).json(data)
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(next)
     };
 
     static create(req,res,next) {
@@ -50,9 +46,7 @@ class UserController {
         .then(({data}) => {
             res.status(200).json(data);
         })
-        .catch(err => {
-            console.log(err.response.data.message);
-        })
+        .catch(next);
 
     };
 
@@ -69,9 +63,7 @@ class UserController {
         .then(({data}) => {
             res.status(202).json(data);
         })
-        .catch(err => {
-            console.log(err.response.data.message);
-        })
+        .catch(next);
     };    
 
 };
