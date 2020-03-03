@@ -4,13 +4,12 @@ const userUrl = process.env.USER_PORT;
 class UserController {
 
     static readAll(req,res,next) {
-        console.log('masuk controller')
         axios({
             url: `${userUrl}/users`,
             method: 'GET',
         })
         .then(({data}) => {
-            res.status(200).json(data);
+            res.status(data.status).json(data.users)
         })
         .catch(next)
     };
@@ -42,12 +41,12 @@ class UserController {
                 password,
                 confirm_password
             }
+            
         })
         .then(({data}) => {
             res.status(200).json(data);
         })
         .catch(next);
-
     };
 
     static login(req,res,next) {
@@ -64,7 +63,9 @@ class UserController {
             res.status(202).json(data);
         })
         .catch(next);
-    };    
+    };
+    
+    
 
 };
 
